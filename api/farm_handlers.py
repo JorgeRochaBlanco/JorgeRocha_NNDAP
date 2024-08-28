@@ -62,14 +62,12 @@ def get_cow_last_measures(id_cow: str): # -> list[dict]:
     """
     l_cow_columns = ['farm_id', 'id', 'name', 'birthdate']
     df_cows = pd.read_csv(BASE_PATH+COW_MASTER_FILE, names=l_cow_columns)
-    print(df_cows.columns)
     df_cows = df_cows[df_cows['id'] == id_cow]   #filter cow data
     l_measure_columns = ['farm_id', 'timestamp', 'cow_id', 'sensor_id', 'value', 'unit']
     df_measures = pd.read_csv(BASE_PATH + MEASURES_MASTER_FILE, names=l_measure_columns)
     df_measures = df_measures[df_measures['cow_id'] == id_cow]
     df_cow_detail = df_cows.merge(df_measures, how='inner', left_on=['id', 'farm_id'], right_on=['cow_id', 'farm_id'])
     df_cow_detail = df_cow_detail[['farm_id', 'timestamp', 'cow_id', 'name', 'birthdate', 'sensor_id', 'value', 'unit']]
-    print(df_cow_detail.columns)
     #We order descending (timestamp), then group by rest of fields (farm, cow, sensor, unit) and get first row (latest)
     df_cow_detail = df_cow_detail.sort_values(by=['farm_id', 'cow_id', 'sensor_id', 'unit', 'timestamp'],
                                               ascending=[False, False, False, False, False])
@@ -83,11 +81,11 @@ def get_cow_last_measures(id_cow: str): # -> list[dict]:
     l_measures = []
     for index, row in df_cow_detail_last.iterrows():
         dict_fields = {}
-        print(i, end='\t')
+        #print(i, end='\t')
         i+=1
         for column in df_cow_detail_last.columns:
-            print(column + ': ' + str(row[column]), end='\t')
+            #print(column + ': ' + str(row[column]), end='\t')
             dict_fields[column] = row[column]
         l_measures.append(dict_fields)
-        print()
+        #print()
     return l_measures
