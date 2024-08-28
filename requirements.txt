@@ -1,0 +1,4 @@
+#Libraries needed to execute program
+fastapi==0.112.*
+pandas==2.2.*
+pyarrow==17.0.*
