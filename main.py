@@ -78,7 +78,7 @@ async def get_cow_details(id: str) -> list[CowDetail]:
 
 
 #For command line launching
-# if __name__ == "__main__":
-#     import uvicorn
-#     # Run the FastAPI application using uvicorn
-#     uvicorn.run(app, host="127.0.0.1", port=8000)
+if __name__ == "__main__":
+    import uvicorn
+    # Run the FastAPI application using uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000)
