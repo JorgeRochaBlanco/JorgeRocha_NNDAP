@@ -82,15 +82,15 @@ class Measure(BaseModel):
             raise ValueError("Sensor ID " + v + " must be a valid GUID")
         return v
     @model_validator(mode='after')   #combined validation, unit and measure
-    def validate_unit(self):
+    def validate_unit_value(self):
         if self.unit not in ["L", "kg"]:
             raise ValueError("Unit " + self.unit + " must be either 'L' or 'kg'")
         else:
             if self.unit == "L":
-                if not(self.value > 0 and self.value < 50):  #supposed 50 is way more than acceptable for milk
+                if not(0 < self.value < 50):  #supposed 50 is way more than acceptable for milk
                     raise ValueError("Milk production (" + str(self.value) + ") must be between 0 and 50")
             else:
-                if not(self.value > 50 and self.value < 1200):  #supposed a cow shouldn't weight more than 1200kg
+                if not(50 < self.value < 1200):  #supposed a cow shouldn't weight more than 1200kg
                     raise ValueError("Cow weight (" + str(self.value) + ") must be between 50 and 1200")
         return self
 
