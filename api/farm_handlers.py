@@ -4,7 +4,6 @@ import datetime
 
 import schemas.farm_schemas as farm_schemas
 
-
 ########################################
 # Parameters, to be specified in KeyVault or YAML file in productive environment
 BASE_PATH = "C:/Jorge/NNDAP/farming_storage/"
