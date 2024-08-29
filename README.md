@@ -45,4 +45,4 @@ In this case, due to limitations, direct hard-coded variables set any parameter 
 
 - **Unit tests**
 
-Due to time limitations, I've just completed a couple examples in API end points.
+Basic endpoint unit tests have been implemented (all). Disk writing is prevented through mocks. 
