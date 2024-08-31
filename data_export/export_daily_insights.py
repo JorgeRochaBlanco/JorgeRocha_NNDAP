@@ -1,6 +1,4 @@
 import os
-import csv
-from logging import exception
 
 import pandas as pd
 import datetime
@@ -50,17 +48,21 @@ def generate_daily_insights_data(dt_ini, dt_end):
     #print(df_base_details.head(10))
     dt_ini_dt = datetime.datetime.strptime(dt_ini, '%Y-%m-%d')   #datetime format, instead of str
     dt_end_dt = datetime.datetime.strptime(dt_end, '%Y-%m-%d')
+    print("We are about to calculate KPIs for the period " + dt_ini + " to " + dt_end)
 
     #loop for generating data (grouped by day and cow id, all indicators)
     aux_date = dt_ini_dt
     l_datasets = []   #list for insights for each day, for union at the end
     while aux_date <= dt_end_dt:
         l_datasets.append(get_day_insighs_cow(aux_date, df_base_details))   #append result for day
+        print("KPIs for " + aux_date.strftime('%Y-%m-%d') + " have been calculated")
         aux_date = aux_date + datetime.timedelta(days=1)
 
     df_result = pd.concat(l_datasets)
     #write result to disk
+    print("Flat file with KPIs is going to be writen")
     df_result.to_csv(BASEPATH_EXPORT + EXPORT, index=False, header=True)
+    print("Data file wrote")
 
 
 
