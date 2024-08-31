@@ -24,6 +24,10 @@ Associated module for this functionality is `loader`.
 Demanded KPIs are generated from data storage, and exported to another file path, in a daily basis (insights are grouped by **day + cow**, as demanded). These data can be rebuilt based on data (cows, sensors, mearues), for a given day or period (loop). The script that runs this is [bulk_export.py](https://github.com/JorgeRochaBlanco/JorgeRocha_NNDAP/blob/master/bulk_export.py), and receives as parameter init and end dates for its processing, in `yyyy-mm-dd` format.
 Associated module for this funcionality is `data_export`.
 
+## Data for the exercise
+
+In order to facilitate exercise analysis, input data in **parquet** format has been included in the [data_files](https://github.com/JorgeRochaBlanco/JorgeRocha_NNDAP/tree/master/data_files) folder. It's only for having all together, there is no direct reference from code to it, it must be copied to another folder and referenced on config variables.
+
 ## Considerations and scalability of the solution
 Many assumptions have been made in order to accomplish implementation. I'll try to expose main ones, with the option I chose and an alternative for alternative productive software.
 
